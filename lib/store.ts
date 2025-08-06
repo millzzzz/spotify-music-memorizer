@@ -77,7 +77,8 @@ export const useReviewStore = create<ReviewState>()(
         if (!currentId) return;
 
         const card = cards[currentId];
-        let { easiness, interval, reps, deck } = card;
+        const { reps } = card;
+        let { easiness, interval, deck } = card;
         let nextDue: number;
 
         if (isGood) {

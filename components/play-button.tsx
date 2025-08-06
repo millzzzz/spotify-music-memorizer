@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Pause, Play } from 'lucide-react'
+import { Pause } from 'lucide-react'
 
 interface PlayButtonProps {
   isPlaying: boolean
@@ -8,7 +8,6 @@ interface PlayButtonProps {
 }
 
 export function PlayButton({ isPlaying, onToggle, className }: PlayButtonProps) {
-  const Icon = isPlaying ? Pause : Play;
   return (
     <Button
       onClick={onToggle}

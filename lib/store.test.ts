@@ -3,8 +3,6 @@ import { useReviewStore } from './store'; // Adjust the import path as needed
 
 describe('Spaced Repetition Algorithm', () => {
   it('should correctly demote a card when answered "Again"', () => {
-    const initialState = useReviewStore.getState();
-    
     // Create a mock card
     const mockCard = {
       id: '1',
@@ -37,8 +35,6 @@ describe('Spaced Repetition Algorithm', () => {
   });
 
   it('should correctly promote a card when answered "Good"', () => {
-    const initialState = useReviewStore.getState();
-
     const mockCard = {
       id: '2',
       deck: 'AGAIN',

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useReviewStore, Card } from "@/lib/store"
 import { useLogStore } from "@/lib/log-store"
@@ -37,11 +37,11 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState<string | null>(null)
   const [toastType, setToastType] = useState<'success' | 'error' | 'info'>('info')
 
-  const showToast = (message: string, type: 'success' | 'error' | 'info' = 'info') => {
+  const showToast = useCallback((message: string, type: 'success' | 'error' | 'info' = 'info') => {
     setToastMessage(message)
     setToastType(type)
     setTimeout(() => setToastMessage(null), 3000)
-  }
+  }, [])
 
   useEffect(() => {
     if (session?.accessToken) {
@@ -123,7 +123,7 @@ export default function App() {
         return <DeckOverview onDeckSelect={handleDeckSelect} />
       case 'review':
         if (queue.length > 0) {
-          return <ReviewCard onError={() => {}} showToast={showToast} onReturn={handleReturnToOverview} />
+          return <ReviewCard showToast={showToast} onReturn={handleReturnToOverview} />
         }
         // This case is now handled by the useEffect hook, but this is a safe fallback.
         return <EmptyState onRetry={() => setAppState('overview')} />

@@ -13,12 +13,11 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ReviewCardProps {
-  onError: () => void
   showToast: (message: string, type: 'success' | 'error' | 'info') => void
   onReturn: () => void
 }
 
-export function ReviewCard({ onError, showToast, onReturn }: ReviewCardProps) {
+export function ReviewCard({ showToast, onReturn }: ReviewCardProps) {
   const { 
     player, 
     deviceId, 
@@ -35,6 +34,9 @@ export function ReviewCard({ onError, showToast, onReturn }: ReviewCardProps) {
   
   const { addLog } = useLogStore()
   const [progress, setProgress] = useState(0)
+
+  const x = useMotionValue(0)
+  const rotate = useTransform(x, [-200, 200], [-30, 30])
 
   const currentCard = currentId ? cards[currentId] : null
 
@@ -155,11 +157,8 @@ export function ReviewCard({ onError, showToast, onReturn }: ReviewCardProps) {
   }, [handlePlayPause, handleAnswer])
 
   if (!currentCard) {
-    return <div>Loading...</div>
+    return <div className="w-full max-w-md text-center">Loading next card...</div>
   }
-
-  const x = useMotionValue(0)
-  const rotate = useTransform(x, [-200, 200], [-30, 30])
   
   const currentQueueIndex = initialQueueSize - queue.length + 1;
 
