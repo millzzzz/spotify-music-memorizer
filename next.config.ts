@@ -1,7 +1,16 @@
-import type { NextConfig } from "next";
+import { defineConfig } from "next/dist/server/config-shared";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig: defineConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co',
+        port: '',
+        pathname: '/image/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

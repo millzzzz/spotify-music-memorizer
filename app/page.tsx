@@ -16,18 +16,6 @@ import { Toast } from "@/components/toast"
 
 type AppState = 'playlist' | 'overview' | 'review';
 
-interface Card {
-  id: string;
-  artworkUrl: string;
-  durationMs: number;
-  easiness: number;
-  interval: number;
-  nextDue: number;
-  deck: 'NEW' | 'AGAIN' | 'GOOD';
-  reps: number;
-  playbackStartPosition: number;
-}
-
 export default function App() {
   const { data: session } = useSession()
   const { queue, setDeck, load, initializePlayer } = useReviewStore()

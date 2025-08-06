@@ -11,6 +11,7 @@ import { useLogStore } from "@/lib/log-store"
 import { addToQueue } from "@/lib/spotify"
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 interface ReviewCardProps {
   showToast: (message: string, type: 'success' | 'error' | 'info') => void
@@ -186,7 +187,7 @@ export function ReviewCard({ showToast, onReturn }: ReviewCardProps) {
       >
         <div className="space-y-6">
           <div className="relative">
-            <img
+            <Image
               src={currentCard.artworkUrl || "/placeholder.svg"}
               alt="Album artwork"
               className="w-64 h-64 mx-auto rounded-lg shadow-lg object-cover"
