@@ -1,26 +1,29 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: #f2f4f8; /* Cool Gray 10 */
+  --color-foreground: #000000; /* Black 100 */
+  --color-card: #ffffff; /* White 0 */
+  --color-card-foreground: #000000; /* Black 100 */
+  --color-primary: #0f62fe; /* Blue 60 */
+  --color-primary-foreground: #ffffff; /* White 0 */
+  --color-secondary: #c1c7cd; /* Cool Gray 30 */
+  --color-secondary-foreground: #000000; /* Black 100 */
+  --color-accent: #3ddbd9; /* Teal 30 */
+  --color-accent-foreground: #000000; /* Black 100 */
+  --color-destructive: #ff7eb6; /* Magenta 40 */
+  --color-destructive-foreground: #000000; /* Black 100 */
+  --color-border: #e5f6ff; /* Cyan 10 */
+  --color-ring: #be95ff; /* Purple 40 */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
 }
