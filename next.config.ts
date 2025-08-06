@@ -1,6 +1,6 @@
-import { defineConfig } from "next/dist/server/config-shared";
+import type { NextConfig } from 'next'
 
-const nextConfig: defineConfig = {
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
@@ -11,6 +11,6 @@ const nextConfig: defineConfig = {
       },
     ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

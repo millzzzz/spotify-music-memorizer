@@ -138,7 +138,7 @@ export const useReviewStore = create<ReviewState>()(
         window.onSpotifyWebPlaybackSDKReady = () => {
           const player = new window.Spotify.Player({
             name: 'Spotify Music Memorizer',
-            getOAuthToken: cb => {
+            getOAuthToken: (cb: (token: string) => void) => {
               cb(getAccessToken());
             },
             volume: 0.5,
@@ -146,7 +146,7 @@ export const useReviewStore = create<ReviewState>()(
 
           set({ player });
 
-          player.addListener('ready', async ({ device_id }) => {
+          player.addListener('ready', async ({ device_id }: { device_id: string }) => {
             console.log('Ready with Device ID', device_id);
             set({ deviceId: device_id });
             try {
@@ -158,7 +158,7 @@ export const useReviewStore = create<ReviewState>()(
             }
           });
 
-          player.addListener('not_ready', ({ device_id }) => {
+          player.addListener('not_ready', ({ device_id }: { device_id: string }) => {
             console.log('Device ID has gone offline', device_id);
             set({ isDeviceActive: false });
           });

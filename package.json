@@ -11,7 +11,10 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --fix"
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "*.{ts,tsx}": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
@@ -33,6 +36,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/spotify-web-api-js": "^0.21.0",
+    "@vitejs/plugin-react": "^4.7.0",
     "@vitest/ui": "^3.2.4",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",

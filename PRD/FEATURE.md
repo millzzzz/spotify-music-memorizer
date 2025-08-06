@@ -8,3 +8,7 @@ If you're just starting to learn a song, it might schedule it for review in the 
 If you've marked it as "Good" several times, it might schedule it for review in the "Good" deck a month or more in the future.
 The card isn't gone forever. It's just been filed away and will only reappear in the "Again" or "Good" decks when its nextDue date arrives. This ensures that your review sessions are always focused on the material you're actively learning or are about to forget.
 So, seeing the "Good" pile stay at zero (or not seeing those cards in the "Again" pile right away) is a sign that the system is working exactly as intended. It's saving you from reviewing things you've already mastered.git a
+
+### pre-commit hooks:
+
+-  exact same type-checking process that Netlify uses.

@@ -6,7 +6,9 @@ describe('Spaced Repetition Algorithm', () => {
     // Create a mock card
     const mockCard = {
       id: '1',
-      deck: 'NEW',
+      artworkUrl: 'test-url',
+      durationMs: 200000,
+      deck: 'NEW' as const,
       easiness: 2.5,
       interval: 5,
       reps: 1,
@@ -37,7 +39,9 @@ describe('Spaced Repetition Algorithm', () => {
   it('should correctly promote a card when answered "Good"', () => {
     const mockCard = {
       id: '2',
-      deck: 'AGAIN',
+      artworkUrl: 'test-url',
+      durationMs: 200000,
+      deck: 'AGAIN' as const,
       easiness: 2.5,
       interval: 1,
       reps: 1,

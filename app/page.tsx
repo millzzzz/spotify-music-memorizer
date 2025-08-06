@@ -32,8 +32,9 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    if (session?.accessToken) {
-      initializePlayer(() => session.accessToken);
+    if (session && session.accessToken) {
+      const token = session.accessToken; // This guarantees token is a string
+      initializePlayer(() => token);
     }
   }, [session, initializePlayer]);
 
@@ -65,18 +66,21 @@ export default function App() {
     addLog(`Fetching tracks for playlist ${playlistId}`, 'info')
     const tracks = await spotifyApi.getPlaylistTracks(playlistId);
     const newCards: Card[] = tracks.items
-      .filter(item => item.track && item.track.album.images.length > 0)
-      .map(item => ({
-        id: item.track.id,
-        artworkUrl: item.track.album.images[0].url,
-        durationMs: item.track.duration_ms,
-        easiness: 2.5,
-        interval: 0,
-        nextDue: 0,
-        deck: 'NEW' as const,
-        reps: 0,
-        playbackStartPosition: Math.floor(Math.random() * (item.track.duration_ms - 15000)),
-      }));
+      .filter((item): item is SpotifyApi.PlaylistTrackObject => item.track !== null && item.track.type === 'track')
+      .map(item => {
+        const track = item.track as SpotifyApi.TrackObjectFull;
+        return {
+          id: track.id,
+          artworkUrl: track.album.images[0].url,
+          durationMs: track.duration_ms,
+          easiness: 2.5,
+          interval: 0,
+          nextDue: 0,
+          deck: 'NEW' as const,
+          reps: 0,
+          playbackStartPosition: Math.floor(Math.random() * (track.duration_ms - 15000)),
+        };
+      });
     load(newCards);
     addLog(`Loaded ${newCards.length} tracks into the NEW deck`, 'success')
     setAppState('overview')
